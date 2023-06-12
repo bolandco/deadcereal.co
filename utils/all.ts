@@ -1,4 +1,4 @@
-export const cx = (...classNames) =>
+export const cx = (...classNames: any[]) =>
   classNames.filter(Boolean).join(" ");
 
 // because we use sanity-next-image
