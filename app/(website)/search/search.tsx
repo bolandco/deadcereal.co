@@ -12,7 +12,7 @@ import { fetcher } from "@/lib/sanity/client";
 export default function Search(props) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const query = searchParams.get("q") || null;
+  const query = searchParams?.get("q") || null;
 
   const [timer, setTimer] = useState(null);
   const { data, error } = useSWR(
@@ -83,6 +83,7 @@ export default function Search(props) {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
           {data &&
             data.map((post, index) => (
+              // @ts-ignore
               <PostList key={post._id} post={post} aspect="square" />
             ))}
         </div>

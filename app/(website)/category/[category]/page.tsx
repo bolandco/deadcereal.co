@@ -5,10 +5,10 @@ import { getAllCategories, getPostsByCategory } from "@/lib/sanity/client";
 export async function generateStaticParams() {
   return await getAllCategories();
 }
-async function getCategoryPosts(category) {
+async function getCategoryPosts(category: string) {
   const posts = await getPostsByCategory(category);
   const title = posts[0]?.categories.filter(
-    (e) => e.slug.current === category
+    (e: any) => e.slug.current === category
   )[0]?.title;
   return { title, posts };
 }

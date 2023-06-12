@@ -24,6 +24,7 @@ export default function HomeLifeStyle({ posts }) {
                 <div
                   className="md:col-span-2 md:row-span-2"
                   key={post._id}>
+                    {/* @ts-ignore */}
                   <PostList
                     post={post}
                     preloadImage={true}
@@ -35,6 +36,7 @@ export default function HomeLifeStyle({ posts }) {
                 </div>
               ))}
               {featuredPost.slice(2, 6).map(post => (
+                // @ts-ignore
                 <PostList
                   key={post._id}
                   post={post}
@@ -55,6 +57,7 @@ export default function HomeLifeStyle({ posts }) {
         </div>
         <div className="grid gap-10 mt-10 lg:gap-10 md:grid-cols-2 xl:grid-cols-4 ">
           {posts.map(post => (
+            // @ts-ignore
             <PostList
               key={post._id}
               post={post}

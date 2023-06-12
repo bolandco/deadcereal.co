@@ -21,7 +21,7 @@ export default function Author(props) {
           <div className="relative h-20 w-20 overflow-hidden rounded-full">
             {author?.image && (
               <Image
-                src={urlForImage(author.image).src}
+                src={urlForImage(author.image)?.src || ""}
                 alt={author.name || " "}
                 fill
                 sizes="(max-width: 320px) 100vw, 320px"
@@ -38,6 +38,7 @@ export default function Author(props) {
         </div>
         <div className="mt-16 grid gap-10 md:grid-cols-2 lg:gap-10 xl:grid-cols-3 ">
           {posts.map(post => (
+            // @ts-ignore
             <PostList key={post._id} post={post} aspect="square" />
           ))}
         </div>

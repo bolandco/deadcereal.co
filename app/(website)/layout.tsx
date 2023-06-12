@@ -11,14 +11,14 @@ export async function sharedMetaData(params) {
     title: {
       default:
         settings?.title ||
-        "Stablo Pro - Blog Template for Next.js & Sanity CMS",
-      template: "%s | Stablo"
+        "Dead Cereal",
+      template: "%s | Dead Cereal"
     },
     description:
       settings?.description ||
-      "Pro version of Stablo, popular open-source next.js and sanity blog template",
-    keywords: ["Next.js", "Sanity", "Tailwind CSS"],
-    authors: [{ name: "Surjith" }],
+      "Dead Cereal, an independent publishing house.",
+    keywords: ["Blog", "Tech", "Programming", "Software", "Web Dev"],
+    authors: [{ name: "bolandco" }],
     canonical: settings?.url,
     openGraph: {
       images: [
@@ -32,7 +32,7 @@ export async function sharedMetaData(params) {
       ]
     },
     twitter: {
-      title: settings?.title || "Stablo Template",
+      title: settings?.title || "Dead Cereal",
       card: "summary_large_image"
     },
     robots: {

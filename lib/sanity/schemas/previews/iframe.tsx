@@ -16,8 +16,8 @@ const IframePreview = ({ url, height }) => {
       }}
       display="block"
       position="relative"
-      frameBorder="0"
-      allowfullscreen
+      frameBorder={0}
+      allowFullScreen
       loading="lazy"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture"
     />

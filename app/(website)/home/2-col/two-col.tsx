@@ -36,6 +36,7 @@ export default function HomeTwoCol({ posts }) {
         </div>
         <div className="grid gap-10 mt-10 lg:mt-5 lg:gap-12 lg:gap-y-16 md:grid-cols-2 lg:px-12">
           {posts.slice(1).map(post => (
+            //  @ts-ignore
             <PostAlt key={post._id} post={post} aspect="landscape" />
           ))}
         </div>

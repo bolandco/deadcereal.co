@@ -108,6 +108,7 @@ export default function Contact({ settings }) {
               />
               {errors.name && (
                 <div className="mt-1 text-red-600">
+                  {/* @ts-ignore */}
                   <small>{errors.name.message}</small>
                 </div>
               )}
@@ -121,7 +122,7 @@ export default function Contact({ settings }) {
                 id="email_address"
                 type="email"
                 placeholder="Email Address"
-                name="email"
+                // name="email"
                 autoComplete="false"
                 className={`w-full px-4 py-3 border-2 placeholder:text-gray-800 dark:text-white rounded-md outline-none dark:placeholder:text-gray-200 dark:bg-gray-900   focus:ring-4  ${
                   errors.email
@@ -138,6 +139,7 @@ export default function Contact({ settings }) {
               />
               {errors.email && (
                 <div className="mt-1 text-red-600">
+                  {/* @ts-ignore */}
                   <small>{errors.email.message}</small>
                 </div>
               )}
@@ -145,7 +147,7 @@ export default function Contact({ settings }) {
 
             <div className="mb-3">
               <textarea
-                name="message"
+                // name="message"
                 placeholder="Your Message"
                 className={`w-full px-4 py-3 border-2 placeholder:text-gray-800 dark:text-white dark:placeholder:text-gray-200 dark:bg-gray-900   rounded-md outline-none  h-36 focus:ring-4  ${
                   errors.message
@@ -159,6 +161,7 @@ export default function Contact({ settings }) {
               {errors.message && (
                 <div className="mt-1 text-red-600">
                   {" "}
+                  {/* @ts-ignore */}
                   <small>{errors.message.message}</small>
                 </div>
               )}

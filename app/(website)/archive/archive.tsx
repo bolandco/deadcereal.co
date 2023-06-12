@@ -15,7 +15,7 @@ import { fetcher } from "@/lib/sanity/client";
 export default function Post({ posts: initialposts }) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const page = searchParams.get("page");
+  const page = searchParams?.get("page") || "";
   const pageIndex = parseInt(page) || 1;
 
   const POSTS_PER_PAGE = 6;
@@ -81,6 +81,7 @@ export default function Post({ posts: initialposts }) {
 
         {isValidating && (
           <div className="mt-10 grid gap-10 md:grid-cols-2 lg:gap-10 xl:grid-cols-3">
+            {/* @ts-ignore */}
             {new Array(6).fill().map((item, index) => (
               <div key={index}>
                 <SkeletonImg />
@@ -91,6 +92,7 @@ export default function Post({ posts: initialposts }) {
         {posts && !isLoading && !isValidating && (
           <div className="mt-10 grid gap-10 md:grid-cols-2 lg:gap-10 xl:grid-cols-3">
             {posts.map(post => (
+              // @ts-ignore
               <PostList key={post._id} post={post} aspect="square" />
             ))}
           </div>

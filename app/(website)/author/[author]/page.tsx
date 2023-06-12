@@ -6,7 +6,7 @@ export async function generateStaticParams() {
   return await getAllAuthorsSlugs();
 }
 
-async function getAuthor(slug) {
+async function getAuthor(slug: string) {
   const posts = await getAuthorPostsBySlug(slug);
   return posts?.[0]?.author || {};
 }

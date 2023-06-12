@@ -1,20 +1,21 @@
 import React from "react";
+// @ts-ignore
 import styles from "./IframePreview.css";
 
-export default function BlogPreview(props) {
+export default function PagePreview(props) {
   const { displayed } = props.document;
   if (!displayed?.slug?.current) {
     return (
-      <div>The blog needs a slug before it can be previewed.</div>
+      <div>The product needs a slug before it can be previewed.</div>
     );
   }
 
   const url =
     process.env.NODE_ENV === "production"
       ? process.env.SANITY_STUDIO_SITE_URL
-        ? `${process.env.SANITY_STUDIO_SITE_URL}/blog/${displayed?.slug?.current}?preview`
-        : `${process.env.VERCEL_URL}/blog/${displayed?.slug?.current}?preview`
-      : `http://localhost:3000/blog/${displayed?.slug?.current}?preview`;
+        ? `${process.env.SANITY_STUDIO_SITE_URL}/${displayed?.slug?.current}?preview`
+        : `${process.env.VERCEL_URL}/${displayed?.slug?.current}?preview`
+      : `http://localhost:3000/${displayed?.slug?.current}?preview`;
 
   return (
     <div className={styles.componentWrapper}>

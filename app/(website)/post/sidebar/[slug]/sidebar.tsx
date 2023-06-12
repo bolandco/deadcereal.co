@@ -1,21 +1,20 @@
-import Image from "next/image";
-import Link from "next/link";
-import Container from "@/components/container";
 import { notFound } from "next/navigation";
 import { PortableText } from "@/lib/sanity/plugins/portabletext";
 import { urlForImage } from "@/lib/sanity/image";
-import { parseISO, format } from "date-fns";
+import { format, parseISO } from "date-fns";
+import Image from "next/image";
+import Link from "next/link";
 import AuthorCard from "@/components/blog/authorCard";
+import Sidebar from "@/components/sidebar";
 
 export default function Post(props) {
-  const { loading, post } = props;
+  const { loading, post, categories } = props;
 
   const slug = post?.slug;
 
   if (!loading && !slug) {
     notFound();
   }
-
   const imageProps = post?.mainImage
     ? urlForImage(post?.mainImage)
     : null;
@@ -40,12 +39,12 @@ export default function Post(props) {
           </div>
         )}
 
-        <div className="mx-auto max-w-screen-md px-5 py-20">
+        <div className="mx-auto max-w-screen-lg px-5 py-20 text-center">
           <h1 className="text-brand-primary mb-3 mt-2 text-3xl font-semibold tracking-tight text-white lg:text-5xl lg:leading-tight">
             {post.title}
           </h1>
 
-          <div className="mt-8 flex space-x-3 text-gray-500 ">
+          <div className="mt-8 flex justify-center space-x-3 text-gray-500 ">
             <div className="flex flex-col gap-3 md:flex-row md:items-center">
               <div className="flex gap-3">
                 <div className="relative h-5 w-5 flex-shrink-0">
@@ -91,8 +90,8 @@ export default function Post(props) {
       </div>
 
       {/* {post?.mainImage && <MainImage image={post.mainImage} />} */}
-      <Container>
-        <article className="mx-auto max-w-screen-md ">
+      <div className="mx-auto mt-14 flex max-w-screen-xl flex-col gap-5 px-5 md:flex-row">
+        <article className="flex-1">
           <div className="prose prose-lg mx-auto my-3 dark:prose-invert prose-a:text-blue-500">
             {post.body && <PortableText value={post.body} />}
           </div>
@@ -105,7 +104,16 @@ export default function Post(props) {
           </div>
           {post.author && <AuthorCard author={post.author} />}
         </article>
-      </Container>
+        <aside className="sticky top-0 w-full self-start md:w-96">
+          <Sidebar
+            categories={categories}
+            pathPrefix="sidebar"
+            related={post.related.filter(
+              item => item.slug.current !== slug
+            )}
+          />
+        </aside>
+      </div>
     </>
   );
 }
@@ -113,6 +121,7 @@ export default function Post(props) {
 const MainImage = ({ image }) => {
   return (
     <div className="mb-12 mt-12 ">
+      {/* @ts-ignore */}
       <Image {...urlForImage(image)} alt={image.alt || "Thumbnail"} />
       <figcaption className="text-center ">
         {image.caption && (

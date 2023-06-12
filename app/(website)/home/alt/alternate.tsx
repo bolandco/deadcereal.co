@@ -7,6 +7,7 @@ export default function AltHome({ posts }) {
       <Container>
         <div className="grid ">
           {posts.slice(0, 1).map(post => (
+            // @ts-ignore
             <PostList
               key={post._id}
               post={post}
@@ -19,6 +20,7 @@ export default function AltHome({ posts }) {
         </div>
         <div className="grid gap-10 mt-20 lg:gap-10 md:grid-cols-2 xl:grid-cols-3 ">
           {posts.slice(1).map(post => (
+            // @ts-ignore
             <PostList key={post._id} post={post} aspect="square" />
           ))}
         </div>

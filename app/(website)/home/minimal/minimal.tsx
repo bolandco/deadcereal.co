@@ -11,6 +11,7 @@ export default function MinimalHome({ posts }) {
       </div>
       <div className="grid gap-10 mt-14 lg:gap-10 ">
         {posts.map(post => (
+          // @ts-ignore
           <PostList
             key={post._id}
             post={post}

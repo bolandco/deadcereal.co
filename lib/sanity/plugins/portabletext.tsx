@@ -7,10 +7,15 @@ import getVideoId from "get-video-id";
 import { cx } from "@/utils/all";
 
 import Refractor from "react-refractor";
+// @ts-ignore
 import js from "refractor/lang/javascript";
+// @ts-ignore
 import jsx from "refractor/lang/jsx";
+// @ts-ignore
 import html from "refractor/lang/markup";
+// @ts-ignore
 import css from "refractor/lang/css";
+// @ts-ignore
 import bash from "refractor/lang/bash";
 
 Refractor.registerLanguage(js);
@@ -24,7 +29,7 @@ const ImageComponent = ({ value }) => {
   // const {width, height} = getImageDimensions(value)
   return (
     <Image
-      src={urlForImage(value)}
+      src={urlForImage(value) || ""}
       alt={value.alt || "Image"}
       loading="lazy"
       className="object-cover"
@@ -92,8 +97,8 @@ const IframePreview = ({ value }) => {
       className={cx(!height && "aspect-video", "rounded-md")}
       display="block"
       position="relative"
-      frameBorder="0"
-      allowfullscreen
+      frameBorder={0}
+      allowFullScreen
       loading="lazy"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture"
     />
