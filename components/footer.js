@@ -22,7 +22,7 @@ export default function Footer(props) {
       <div className="flex items-center justify-center mt-2">
         <ThemeSwitch />
       </div>
-      <Backlink />
+      {/* <Backlink /> */}
     </Container>
   );
 }
