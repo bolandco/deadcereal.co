@@ -15,14 +15,14 @@ export default function NavbarAlt(props) {
   const menu = [
     {
       label: "Home",
-      href: "#",
-      children: [
-        { title: "Home Default", path: "/home/default" },
-        { title: "Home Alternate", path: "/home/alt" },
-        { title: "Home Minimal", path: "/home/minimal" },
-        { title: "Home Lifestyle", path: "/home/lifestyle" },
-        { title: "Home Two Column", path: "/home/2-col" }
-      ]
+      href: "/",
+      // children: [
+      //   { title: "Home Default", path: "/home/default" },
+      //   { title: "Home Alternate", path: "/home/alt" },
+      //   { title: "Home Minimal", path: "/home/minimal" },
+      //   { title: "Home Lifestyle", path: "/home/lifestyle" },
+      //   { title: "Home Two Column", path: "/home/2-col" }
+      // ]
     },
     {
       label: "About",
@@ -67,22 +67,22 @@ export default function NavbarAlt(props) {
         }
       ]
     },
-    {
-      label: "Purchase",
-      href: "https://web3templates.com/templates/stablo-minimal-blog-website-template",
-      external: true
-    }
+    // {
+    //   label: "Purchase",
+    //   href: "https://web3templates.com/templates/stablo-minimal-blog-website-template",
+    //   external: true
+    // }
   ];
 
   return (
-    <Container className="!py-0">
+    <Container className="!py-0 mt-8">
       <nav className="my-4">
         <Disclosure>
           {({ open }) => (
             <>
               <div className="flex flex-wrap justify-between md:gap-10 lg:flex-nowrap">
                 <div className="flex w-full items-center justify-between lg:w-auto">
-                  <Link href="/" className="w-28 dark:hidden">
+                  <Link href="/" className="w-56 dark:hidden">
                     {props.logo ? (
                       <Image
                       // @ts-ignore
@@ -93,11 +93,11 @@ export default function NavbarAlt(props) {
                       />
                     ) : (
                       <span className="block text-center">
-                        Stablo
+                        Dead Cereal
                       </span>
                     )}
                   </Link>
-                  <Link href="/" className="hidden w-28 dark:block">
+                  <Link href="/" className="hidden w-56 dark:block">
                     {props.logoalt ? (
                       <Image
                       // @ts-ignore
@@ -108,7 +108,7 @@ export default function NavbarAlt(props) {
                       />
                     ) : (
                       <span className="block text-center">
-                        Stablo
+                        Dead Cereal
                       </span>
                     )}
                   </Link>
@@ -151,7 +151,9 @@ export default function NavbarAlt(props) {
                             href={item.href}
                             key={index + item.label}
                             className="rounded-full px-5 py-2 font-medium text-gray-600 outline-none ring-blue-100 hover:text-blue-500 focus-visible:text-blue-500 focus-visible:ring-2 dark:text-gray-400"
+                            // @ts-ignore
                             target={item.external ? "_blank" : ""}
+                            // @ts-ignore
                             rel={item.external ? "noopener" : ""}>
                             {item.label}
                           </Link>
@@ -183,7 +185,9 @@ export default function NavbarAlt(props) {
                           href={item.href}
                           key={index + item.label}
                           className="rounded-full px-5 py-2 text-sm font-medium text-gray-600 outline-none ring-blue-100 hover:text-blue-500 focus-visible:text-blue-500 focus-visible:ring-2 dark:text-gray-400"
+                          // @ts-ignore
                           target={item.external ? "_blank" : ""}
+                          // @ts-ignore
                           rel={item.external ? "noopener" : ""}>
                           {item.label}
                         </Link>
