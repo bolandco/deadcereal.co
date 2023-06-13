@@ -13,6 +13,7 @@ export default function AuthorCard({ author }) {
             <Link href={`/author/${author.slug.current}`}>
               <Image
                 src={imageProps.src}
+                // @ts-ignore
                 loader={imageProps.loader}
                 alt={author.name}
                 className="rounded-full object-cover"

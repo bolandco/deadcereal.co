@@ -8,16 +8,14 @@ import Image from "next/image";
 import { urlForImage } from "@/lib/sanity/image";
 import cx from "clsx";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
-import { myLoader } from "@/utils/all";
-import SearchInput from "./ui/search";
 
-export default function NavbarAlt(props) {
-  const menu = [
+export default function Navbar(props) {
+  const leftmenu = [
     {
       label: "Home",
       href: "#",
       children: [
-        { title: "Home Default", path: "/" },
+        { title: "Home Default", path: "/home/default" },
         { title: "Home Alternate", path: "/home/alt" },
         { title: "Home Minimal", path: "/home/minimal" },
         { title: "Home Lifestyle", path: "/home/lifestyle" },
@@ -31,7 +29,10 @@ export default function NavbarAlt(props) {
     {
       label: "Contact",
       href: "/contact"
-    },
+    }
+  ];
+
+  const rightmenu = [
     {
       label: "Pages",
       href: "#",
@@ -68,24 +69,57 @@ export default function NavbarAlt(props) {
       ]
     },
     {
+      label: "Free Version",
+      href: "https://stablo.web3templates.com/",
+      external: true
+    },
+    {
       label: "Purchase",
       href: "https://web3templates.com/templates/stablo-minimal-blog-website-template",
       external: true
     }
   ];
 
+  const mobilemenu = [...leftmenu, ...rightmenu];
+
   return (
-    <Container className="!py-0">
-      <nav className="my-4">
+    <Container>
+      <nav>
         <Disclosure>
           {({ open }) => (
             <>
-              <div className="flex flex-wrap justify-between md:gap-10 lg:flex-nowrap">
-                <div className="flex w-full items-center justify-between lg:w-auto">
+              <div className="flex flex-wrap justify-between md:flex-nowrap md:gap-10">
+                <div className="order-1 hidden w-full flex-col items-center justify-start md:order-none md:flex md:w-auto md:flex-1 md:flex-row md:justify-end">
+                  {leftmenu.map((item, index) => (
+                    <Fragment key={`${item.label}${index}`}>
+                      {item.children && item.children.length > 0 ? (
+                        // @ts-ignore
+                        <DropdownMenu
+                          menu={item}
+                          key={`${item.label}${index}`}
+                          items={item.children}
+                        />
+                      ) : (
+                        <Link
+                          href={item.href}
+                          key={`${item.label}${index}`}
+                          className="px-5 py-2 text-sm font-medium text-gray-600 hover:text-blue-500 dark:text-gray-400"
+                          // @ts-ignore
+                          target={item.external ? "_blank" : ""}
+                          // @ts-ignore
+                          rel={item.external ? "noopener" : ""}>
+                          {item.label}
+                        </Link>
+                      )}
+                    </Fragment>
+                  ))}
+                </div>
+                <div className="flex w-full items-center justify-between md:w-auto">
                   <Link href="/" className="w-28 dark:hidden">
                     {props.logo ? (
+                      // @ts-ignore
                       <Image
-                        src={urlForImage(props.logo)}
+                        {...urlForImage(props.logo)}
                         alt="Logo"
                         priority={true}
                         sizes="(max-width: 640px) 100vw, 200px"
@@ -98,8 +132,9 @@ export default function NavbarAlt(props) {
                   </Link>
                   <Link href="/" className="hidden w-28 dark:block">
                     {props.logoalt ? (
+                      // @ts-ignore
                       <Image
-                        src={urlForImage(props.logoalt)}
+                        {...urlForImage(props.logoalt)}
                         alt="Logo"
                         priority={true}
                         sizes="(max-width: 640px) 100vw, 200px"
@@ -112,7 +147,7 @@ export default function NavbarAlt(props) {
                   </Link>
                   <Disclosure.Button
                     aria-label="Toggle Menu"
-                    className="ml-auto rounded-md px-2 py-1 text-gray-500 focus:text-blue-500 focus:outline-none dark:text-gray-300 lg:hidden ">
+                    className="ml-auto rounded-md px-2 py-1 text-gray-500 focus:text-blue-500 focus:outline-none dark:text-gray-300 md:hidden ">
                     <svg
                       className="h-6 w-6 fill-current"
                       xmlns="http://www.w3.org/2000/svg"
@@ -133,65 +168,56 @@ export default function NavbarAlt(props) {
                     </svg>
                   </Disclosure.Button>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="hidden w-full flex-col items-center lg:flex lg:w-auto lg:flex-row ">
-                    {menu.map((item, index) => (
-                      <>
-                        {item.children && item.children.length > 0 ? (
-                          <DropdownMenu
-                            menu={item}
-                            key={index + item.label}
-                            items={item.children}
-                            mobile={props.mobile}
-                          />
-                        ) : (
-                          <Link
-                            href={item.href}
-                            key={index + item.label}
-                            className="rounded-full px-5 py-2 font-medium text-gray-600 outline-none ring-blue-100 hover:text-blue-500 focus-visible:text-blue-500 focus-visible:ring-2 dark:text-gray-400"
-                            target={item.external ? "_blank" : ""}
-                            rel={item.external ? "noopener" : ""}>
-                            {item.label}
-                          </Link>
-                        )}
-                      </>
-                    ))}
-                  </div>
-                  <div className="hidden lg:block">
-                    <form action="/search" method="GET">
-                      <SearchInput placeholder="Search Blog" />
-                    </form>
-                  </div>
+
+                <div className="order-2 hidden w-full flex-col items-center justify-start md:order-none md:flex md:w-auto md:flex-1 md:flex-row">
+                  {rightmenu.map((item, index) => (
+                    <Fragment key={`${item.label}${index}`}>
+                      {item.children && item.children.length > 0 ? (
+                        // @ts-ignore
+                        <DropdownMenu
+                          menu={item}
+                          key={`${item.label}${index}`}
+                          items={item.children}
+                        />
+                      ) : (
+                        <Link
+                          href={item.href}
+                          key={`${item.label}${index}`}
+                          className="px-5 py-2 text-sm font-medium text-gray-600 hover:text-blue-500 dark:text-gray-400"
+                          target={item.external ? "_blank" : ""}
+                          rel={item.external ? "noopener" : ""}>
+                          {item.label}
+                        </Link>
+                      )}
+                    </Fragment>
+                  ))}
                 </div>
               </div>
               <Disclosure.Panel>
-                <div className="order-2 -ml-5 mt-5 flex w-full flex-col items-start justify-start lg:hidden">
-                  {menu.map((item, index) => (
-                    <>
+                <div className="order-2 -ml-4 mt-4 flex w-full flex-col items-center justify-start md:hidden">
+                  {mobilemenu.map((item, index) => (
+                    <Fragment key={`${item.label}${index}`}>
                       {item.children && item.children.length > 0 ? (
                         <DropdownMenu
                           menu={item}
-                          key={index + item.label}
+                          key={`${item.label}${index}`}
                           items={item.children}
                           mobile={true}
                         />
                       ) : (
                         <Link
                           href={item.href}
-                          key={index + item.label}
-                          className="rounded-full px-5 py-2 text-sm font-medium text-gray-600 outline-none ring-blue-100 hover:text-blue-500 focus-visible:text-blue-500 focus-visible:ring-2 dark:text-gray-400"
+                          key={`${item.label}${index}`}
+                          className="w-full px-5 py-2 text-sm font-medium text-gray-600 hover:text-blue-500 dark:text-gray-400"
+                          // @ts-ignore
                           target={item.external ? "_blank" : ""}
+                          // @ts-ignore
                           rel={item.external ? "noopener" : ""}>
                           {item.label}
                         </Link>
                       )}
-                    </>
+                    </Fragment>
                   ))}
-                  <div className="mt-2 px-5">
-                    <form action="/search" method="GET">
-                      <SearchInput placeholder="Search Blog" />
-                    </form>
-                  </div>
                 </div>
               </Disclosure.Panel>
             </>
@@ -204,18 +230,18 @@ export default function NavbarAlt(props) {
 
 const DropdownMenu = ({ menu, items, mobile }) => {
   return (
-    <Menu as="div" className="relative text-left">
+    <Menu
+      as="div"
+      className={cx("relative text-left", mobile && "w-full")}>
       {({ open }) => (
         <>
           <Menu.Button
             className={cx(
-              "flex items-center gap-x-1 rounded-full px-5 py-2  font-medium outline-none ring-blue-100 transition-all focus-visible:text-blue-500 focus-visible:ring-2",
+              "flex items-center gap-x-1 rounded-md px-5 py-2 text-sm font-medium  outline-none transition-all focus:outline-none focus-visible:text-indigo-500 focus-visible:ring-1 dark:focus-visible:bg-gray-800",
               open
                 ? "text-blue-500 hover:text-blue-500"
                 : " text-gray-600 dark:text-gray-400 ",
-              mobile
-                ? "w-full px-4 py-2 text-sm"
-                : "inline-block px-4 py-2"
+              mobile ? "w-full px-4 py-2 " : "inline-block px-4 py-2"
             )}>
             <span>{menu.label}</span>
             <ChevronDownIcon className="mt-0.5 h-4 w-4" />
@@ -235,7 +261,7 @@ const DropdownMenu = ({ menu, items, mobile }) => {
               )}>
               <div className={cx(!mobile && "py-3")}>
                 {items.map((item, index) => (
-                  <Menu.Item as="div" key={index}>
+                  <Menu.Item as="div" key={`${item.title}${index}`}>
                     {({ active }) => (
                       <Link
                         href={item?.path ? item.path : "#"}

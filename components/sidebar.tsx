@@ -30,6 +30,7 @@ function Searchbar() {
         Search Posts
       </h3>
       <form action="/search" method="GET" className="mt-4">
+        {/* @ts-ignore */}
         <SearchInput placeholder="Search" />
       </form>
     </div>
@@ -54,7 +55,9 @@ function RelatedPosts({ related, pathPrefix }) {
               <div className="flex gap-5">
                 <div className="relative w-24 h-20 overflow-hidden rounded-md shrink-0">
                   <Image
+                    // @ts-ignore
                     src={imageProps.src}
+                    // @ts-ignore
                     loader={imageProps.loader}
                     alt={item.title || "Thumbnail"}
                     fill
@@ -67,6 +70,7 @@ function RelatedPosts({ related, pathPrefix }) {
                     {item.title}
                   </h3>
                   <p className="mt-2 text-sm text-gray-500">
+                    {/* @ts-ignore */}
                     <DateTime date={item.date} />
                   </p>
                 </div>

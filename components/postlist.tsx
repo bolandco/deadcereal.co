@@ -122,7 +122,9 @@ export default function PostList({
                   <div className="relative flex-shrink-0 w-5 h-5">
                     {post.author.image && (
                       <Image
+                      // @ts-ignore
                         src={AuthorimageProps.src}
+                        // @ts-ignore
                         loader={AuthorimageProps.loader}
                         alt={post?.author?.name}
                         className="object-cover rounded-full"

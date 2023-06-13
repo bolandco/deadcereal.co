@@ -1,4 +1,5 @@
 import { cx } from "@/utils/all";
+import { pink } from "tailwindcss/colors";
 
 export default function Label(props) {
   const color = {
@@ -33,7 +34,7 @@ export default function Label(props) {
       className={cx(
         "inline-block text-xs font-medium tracking-wider uppercase ",
         !margin && " mt-5",
-        color[props.color] || color[pink]
+        color[props.color] || color[pink[500]]
       )}>
       {props.children}
     </span>
