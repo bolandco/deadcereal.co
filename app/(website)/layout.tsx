@@ -17,8 +17,8 @@ export async function sharedMetaData(params) {
     description:
       settings?.description ||
       "Dead Cereal, an independent publishing house.",
-    keywords: ["Blog", "Tech", "Programming", "Software", "Web Dev"],
-    authors: [{ name: "bolandco" }],
+    keywords: ["Blog", "Writing", "Tech", "Programming", "Software", "Web Dev"],
+    authors: [{ name: "Michael Boland" }],
     canonical: settings?.url,
     openGraph: {
       images: [
